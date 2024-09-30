@@ -145,6 +145,19 @@ if ( file_exists( $env_config ) ) {
 	require_once $env_config;
 }
 
+/** 
+ * Multisite Settings
+ */
+
+Config::define( 'WP_ALLOW_MULTISITE', true );
+Config::define( 'MULTISITE', true );
+Config::define( 'SUBDOMAIN_INSTALL', false ); // Set this to TRUE for Subdomain installs.
+// Use PANTHEON_HOSTNAME if in a Pantheon environment, otherwise use HTTP_HOST.
+Config::define( 'DOMAIN_CURRENT_SITE', defined( 'PANTHEON_HOSTNAME' ) ? PANTHEON_HOSTNAME : $_SERVER['HTTP_HOST'] );
+Config::define( 'PATH_CURRENT_SITE', '/' );
+Config::define( 'SITE_ID_CURRENT_SITE', 1 );
+Config::define( 'BLOG_ID_CURRENT_SITE', 1 );
+
 Config::apply();
 
 /**
